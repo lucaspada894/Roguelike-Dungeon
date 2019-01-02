@@ -1,0 +1,19 @@
+9/3/2018: Started project. Finished initializing grid of cell structs. Wrote functions initializer and printer.
+9/4/2018: wrote functions roomGenerator and roomGeneratorHelper to randomly place rooms within the grid. Started functions pathGenerator and pathGeneratorRec.
+	
+9/5/2018: Finished functions pathGenerator and pathGeneratorRec. Bug(1) found: some corridors would not link to any room. Bug(1) fixed: miscalculation of room centroids. Bug(2) found: one corridor would always go out of bounds (outside the grid). Bug(2) fixed: Did not connect last room to first room properly. Bug(3) found: Segmentation fault. Bug(3) fixed: Recursive function pathGeneratorRec did not perform correct operation when generating path in the up and down directions.
+	
+9/12/2018: Encountered so many segmentation faults which I couldn't debug because I didn't even know about Valgrind. Debugged most by pure luck. Have one bug left which is most definitely caused by the endian conversion.
+	
+9/26/2018: Added two functions, dijkstra_corridor_tunneling and dijkstra_corridor_no_tunneling, which print movement costs from every cell in the dungeon to the player's position, once for tunneling npcs(which take a cell's hardness into consideration and once for non-tunneling npcs(which can only move thrugh cells of hardness 0. Have fixed relevant bugs. 
+
+10/17/2018: Added the function pcNextMove() to pc.c, which modifies the given parameter pair_t to determine the pc's next position once move_character has been called from move.c. Also added functions populateArr(character_t arr) which populates an array of monsters from the character map. The fuction display_list() displays a list of monsters and their coordinates with respect to the PC position. Have one more known bug: the PC gets an extra turn upon entering stairs into a newly generated dungeon. 	
+
+10/24/2018: Added the function fogOfWar, which only prints dungeon tiles within a certain distance from the PC. fogOfWar uses helper functions isInRange() and initFow(). Had a bug with terrain_type array in PC struct which did not allow me to access and initialize the array, but the same code works flawlessly in C++. Added yellow color to fog of war output.
+	
+11/1/2018: Changed main() in rlg327.cpp to parse from file monster_desc.txt in the user's home directory. Made it so that the actual game would not start (i.e, the game only parses and outputs to the screen without entering the actual dungeon game). Found no bugs (since we can assume that the file being read has correct format). 
+	
+11/7/2018: Encountered compiler error with macros.h: macro 'free'. Because my code could not compile, I could not test it. I added functions to add objects from the parsed descriptions and randomly place them in the dungeon, along with other functionalities, but was not able to test them.  
+11/16/2018: Added all commands and updated combat. Only one known bug: pc seems to take an extra turn. It should be an easy fix only dependent on swapping monster positions outside of do_combat(), however, doing so in move_character swaps the PC for a monster. All commands are accessible either from the main game or from the inventory and equipment screens.	
+	
+12/2/2018: Added several consumables, a non-agressive vendor npc, an artillery mode, and a screen to view player stats. There is a small bug that causes the Vendor npc to every once in a while not be loaded. The Vendor npc should always load in the dungeon floor.  

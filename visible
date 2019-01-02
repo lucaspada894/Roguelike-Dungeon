@@ -1,0 +1,1332 @@
+object.cpp~:63:  std::vector<object_description> &v = d->object_descriptions;
+object.cpp~:70:  room = rand_range(0, d->num_rooms - 1);
+object.cpp~:72:    p[dim_y] = rand_range(d->rooms[room].position[dim_y],
+object.cpp~:73:                          (d->rooms[room].position[dim_y] +
+object.cpp~:74:                           d->rooms[room].size[dim_y] - 1));
+object.cpp~:75:    p[dim_x] = rand_range(d->rooms[room].position[dim_x],
+object.cpp~:76:                          (d->rooms[room].position[dim_x] +
+object.cpp~:77:                           d->rooms[room].size[dim_x] - 1));
+object.cpp~:80:  o = new object(v[i], p, d->objmap[p[dim_y]][p[dim_x]]);
+object.cpp~:82:  d->objmap[p[dim_y]][p[dim_x]] = o;
+object.cpp~:90:  memset(d->objmap, 0, sizeof (d->objmap));
+object.cpp~:92:  for (i = 0; i < d->max_objects; i++) {
+object.cpp~:96:  d->num_objects = d->max_objects;
+object.cpp~:130:      if (d->objmap[y][x]) {
+object.cpp~:131:        delete d->objmap[y][x];
+object.cpp~:132:        d->objmap[y][x] = 0;
+object.cpp~:175:  next = (object *) d->objmap[location[dim_y]][location[dim_x]];
+object.cpp~:176:  d->objmap[location[dim_y]][location[dim_x]] = this;
+object.cpp~:182:  std::vector<object_description> &v = d->object_descriptions;
+object.cpp~:188:      d->vendor_items.push_back(o);
+descriptions.h~:153:  inline void destroy() { num_generated--; }
+object.cpp:63:  std::vector<object_description> &v = d->object_descriptions;
+object.cpp:70:  room = rand_range(0, d->num_rooms - 1);
+object.cpp:72:    p[dim_y] = rand_range(d->rooms[room].position[dim_y],
+object.cpp:73:                          (d->rooms[room].position[dim_y] +
+object.cpp:74:                           d->rooms[room].size[dim_y] - 1));
+object.cpp:75:    p[dim_x] = rand_range(d->rooms[room].position[dim_x],
+object.cpp:76:                          (d->rooms[room].position[dim_x] +
+object.cpp:77:                           d->rooms[room].size[dim_x] - 1));
+object.cpp:80:  o = new object(v[i], p, d->objmap[p[dim_y]][p[dim_x]]);
+object.cpp:82:  d->objmap[p[dim_y]][p[dim_x]] = o;
+object.cpp:90:  memset(d->objmap, 0, sizeof (d->objmap));
+object.cpp:92:  for (i = 0; i < d->max_objects; i++) {
+object.cpp:96:  d->num_objects = d->max_objects;
+object.cpp:130:      if (d->objmap[y][x]) {
+object.cpp:131:        delete d->objmap[y][x];
+object.cpp:132:        d->objmap[y][x] = 0;
+object.cpp:175:  next = (object *) d->objmap[location[dim_y]][location[dim_x]];
+object.cpp:176:  d->objmap[location[dim_y]][location[dim_x]] = this;
+object.cpp:182:  std::vector<object_description> &v = d->object_descriptions;
+object.cpp:188:      d->vendor_items.push_back(o);
+object.cpp:192:	d->vendor_items.push_back(o);
+object.cpp:196:      d->vendor_items.push_back(o);
+object.cpp:200:      d->vendor_items.push_back(o);
+io.cpp~:51:    io_head = io_head->next;
+io.cpp~:88:    mvprintw(y, x, "%-80s", io_head->msg);
+io.cpp~:90:    io_head = io_head->next;
+io.cpp~:109:      if (charxy(x, y) == d->PC) {
+io.cpp~:114:        mvaddch(y + 1, x, '0' + (d->pc_tunnel[y][x] % 10));
+io.cpp~:132:        mvaddch(y + 1, x, '0' + (d->pc_distance[y][x] % 10));
+io.cpp~:154:      mvaddch(y + 1, x, (d->hardness[y][x]                             ?
+io.cpp~:155:                         hardness_to_char[1 + (int) ((d->hardness[y][x] /
+io.cpp~:185:      if ((d->PC->position[dim_y] + pos[dim_y] < 0) ||
+io.cpp~:186:          (d->PC->position[dim_y] + pos[dim_y] >= DUNGEON_Y) ||
+io.cpp~:187:          (d->PC->position[dim_x] + pos[dim_x] < 0) ||
+io.cpp~:188:          (d->PC->position[dim_x] + pos[dim_x] >= DUNGEON_X)) {
+io.cpp~:191:      if ((illuminated = is_illuminated(d->PC,
+io.cpp~:192:                                        d->PC->position[dim_y] + pos[dim_y],
+io.cpp~:193:                                        d->PC->position[dim_x] + pos[dim_x]))) {
+io.cpp~:196:      if (cursor[dim_y] == d->PC->position[dim_y] + pos[dim_y] &&
+io.cpp~:197:          cursor[dim_x] == d->PC->position[dim_x] + pos[dim_x]) {
+io.cpp~:198:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:199:                d->PC->position[dim_x] + pos[dim_x], '*');
+io.cpp~:200:      } else if (d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:201:                                 [d->PC->position[dim_x] + pos[dim_x]] &&
+io.cpp~:202:                 can_see(d, d->PC->position,
+io.cpp~:203:                         d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:204:                                         [d->PC->position[dim_x] +
+io.cpp~:206:        attron(COLOR_PAIR((color = d->character_map[d->PC->position[dim_y] +
+io.cpp~:208:                                                   [d->PC->position[dim_x] +
+io.cpp~:210:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:211:                d->PC->position[dim_x] + pos[dim_x],
+io.cpp~:212:                character_get_symbol(d->character_map[d->PC->position[dim_y] +
+io.cpp~:214:                                                     [d->PC->position[dim_x] +
+io.cpp~:217:      } else if (d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:218:                          [d->PC->position[dim_x] + pos[dim_x]] &&
+io.cpp~:219:                 (can_see(d, d->PC->position,
+io.cpp~:220:                          d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:221:                                   [d->PC->position[dim_x] +
+io.cpp~:223:                 d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:224:                          [d->PC->position[dim_x] + pos[dim_x]]->have_seen())) {
+io.cpp~:225:        attron(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:226:                                   [d->PC->position[dim_x] +
+io.cpp~:228:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:229:                d->PC->position[dim_x] + pos[dim_x],
+io.cpp~:230:                d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:231:                         [d->PC->position[dim_x] + pos[dim_x]]->get_symbol());
+io.cpp~:232:        attroff(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp~:233:                                    [d->PC->position[dim_x] +
+io.cpp~:236:        switch (pc_learned_terrain(d->PC,
+io.cpp~:237:                                   d->PC->position[dim_y] + pos[dim_y],
+io.cpp~:238:                                   d->PC->position[dim_x] +
+io.cpp~:243:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:244:                  d->PC->position[dim_x] + pos[dim_x], ' ');
+io.cpp~:248:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:249:                  d->PC->position[dim_x] + pos[dim_x], '.');
+io.cpp~:252:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:253:                  d->PC->position[dim_x] + pos[dim_x], '#');
+io.cpp~:256:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:257:                  d->PC->position[dim_x] + pos[dim_x], '*');
+io.cpp~:260:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:261:                  d->PC->position[dim_x] + pos[dim_x], '<');
+io.cpp~:264:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:265:                  d->PC->position[dim_x] + pos[dim_x], '>');
+io.cpp~:270:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp~:271:                  d->PC->position[dim_x] + pos[dim_x], '0');
+io.cpp~:297:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+io.cpp~:302:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC) {
+io.cpp~:303:        c[count++] = d->character_map[y][x];
+io.cpp~:313:    if (can_see(d, character_get_pos(d->PC), character_get_pos(c[i]), 1, 0)) {
+io.cpp~:337:      if ((illuminated = is_illuminated(d->PC,
+io.cpp~:342:      if (d->character_map[pos[dim_y]]
+io.cpp~:345:                  character_get_pos(d->PC),
+io.cpp~:346:                  character_get_pos(d->character_map[pos[dim_y]]
+io.cpp~:349:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+io.cpp~:352:                character_get_symbol(d->character_map[pos[dim_y]]
+io.cpp~:355:      } else if (d->objmap[pos[dim_y]]
+io.cpp~:357:                 (d->objmap[pos[dim_y]]
+io.cpp~:359:                  can_see(d, character_get_pos(d->PC), pos, 1, 0))) {
+io.cpp~:360:        attron(COLOR_PAIR(d->objmap[pos[dim_y]]
+io.cpp~:363:                d->objmap[pos[dim_y]]
+io.cpp~:365:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]]
+io.cpp~:368:        switch (pc_learned_terrain(d->PC,
+io.cpp~:405:           d->PC->position[dim_x], d->PC->position[dim_y]);
+io.cpp~:413:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+io.cpp~:414:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+io.cpp~:416:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+io.cpp~:417:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+io.cpp~:440:      if ((illuminated = is_illuminated(d->PC,
+io.cpp~:447:      } else if (d->character_map[pos[dim_y]][pos[dim_x]]) {
+io.cpp~:448:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+io.cpp~:451:                character_get_symbol(d->character_map[pos[dim_y]][pos[dim_x]]));
+io.cpp~:453:      } else if (d->objmap[pos[dim_y]][pos[dim_x]]) {
+io.cpp~:454:        attron(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+io.cpp~:456:                d->objmap[pos[dim_y]][pos[dim_x]]->get_symbol());
+io.cpp~:457:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+io.cpp~:475:      if (d->character_map[y][x]) {
+io.cpp~:476:        attron(COLOR_PAIR((color = d->character_map[y][x]->get_color())));
+io.cpp~:477:        mvaddch(y + 1, x, character_get_symbol(d->character_map[y][x]));
+io.cpp~:479:      } else if (d->objmap[y][x]) {
+io.cpp~:480:        attron(COLOR_PAIR(d->objmap[y][x]->get_color()));
+io.cpp~:481:        mvaddch(y + 1, x, d->objmap[y][x]->get_symbol());
+io.cpp~:482:        attroff(COLOR_PAIR(d->objmap[y][x]->get_color()));
+io.cpp~:515:           d->PC->position[dim_x], d->PC->position[dim_y]);
+io.cpp~:516:  mvprintw(22, 1, "%d %s.", d->num_monsters,
+io.cpp~:517:           d->num_monsters > 1 ? "monsters" : "monster");
+io.cpp~:523:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+io.cpp~:524:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+io.cpp~:526:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+io.cpp~:527:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+io.cpp~:557:  pc_reset_visibility(d->PC);
+io.cpp~:563:  dest[dim_y] = d->PC->position[dim_y];
+io.cpp~:564:  dest[dim_x] = d->PC->position[dim_x];
+io.cpp~:688:  if (charpair(dest) && charpair(dest) != d->PC) {
+io.cpp~:691:    d->character_map[d->PC->position[dim_y]][d->PC->position[dim_x]] = NULL;
+io.cpp~:692:    d->character_map[dest[dim_y]][dest[dim_x]] = d->PC;
+io.cpp~:694:    d->PC->position[dim_y] = dest[dim_y];
+io.cpp~:695:    d->PC->position[dim_x] = dest[dim_x];
+io.cpp~:698:  pc_observe_terrain(d->PC, d);
+io.cpp~:813:             abs(character_get_y(c[i]) - character_get_y(d->PC)),
+io.cpp~:814:             ((character_get_y(c[i]) - character_get_y(d->PC)) <= 0 ?
+io.cpp~:816:             abs(character_get_x(c[i]) - character_get_x(d->PC)),
+io.cpp~:817:             ((character_get_x(c[i]) - character_get_x(d->PC)) <= 0 ?
+io.cpp~:847:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+io.cpp~:852:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC &&
+io.cpp~:853:          can_see(d, character_get_pos(d->PC),
+io.cpp~:854:                  character_get_pos(d->character_map[y][x]), 1, 0)) {
+io.cpp~:855:        c[count++] = d->character_map[y][x];
+io.cpp~:874:  mvprintw(11, 33, " HP:    %5d ", d->PC->hp);
+io.cpp~:875:  mvprintw(12, 33, " Speed: %5d ", d->PC->speed);
+io.cpp~:904:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp~:930:    if (!d->PC->in[key - '0']) {
+io.cpp~:935:    if (!d->PC->wear_in(key - '0')) {
+io.cpp~:940:             d->PC->in[key - '0']->get_name());
+io.cpp~:954:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp~:958:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+io.cpp~:972:    else if(d->PC->in[tempInput] == NULL){
+io.cpp~:976:    else if(d->PC->in[tempInput]->get_type() != 20){
+io.cpp~:981:      if(strcmp(d->PC->in[tempInput]->get_name(), "weak Hp Potion") == 0){
+io.cpp~:982:	if((d->PC->hp + 300) > 1000)
+io.cpp~:983:	  d->PC->hp = 1000;
+io.cpp~:985:	  d->PC->hp += 300;
+io.cpp~:987:      else if(strcmp(d->PC->in[tempInput]->get_name(), "medium Hp Potion") == 0){
+io.cpp~:988:	if((d->PC->hp + 500) > 1000)
+io.cpp~:989:	  d->PC->hp = 1000;
+io.cpp~:991:	  d->PC->hp += 500;
+io.cpp~:993:      else if (strcmp(d->PC->in[tempInput]->get_name(), "greater Hp Potion") == 0){
+io.cpp~:994:	if((d->PC->hp + 700) > 1000)
+io.cpp~:995:	  d->PC->hp = 1000;
+io.cpp~:997:	  d->PC->hp += 700;
+io.cpp~:999:      else if(strcmp(d->PC->in[tempInput]->get_name(), "max Hp Potion") == 0)
+io.cpp~:1000:	d->PC->hp = 1000;
+io.cpp~:1002:      else if(strcmp(d->PC->in[tempInput]->get_name(), "attack potion") == 0)
+io.cpp~:1003:	d->PC->attack_potion_turns = 3;
+io.cpp~:1005:      else if(strcmp(d->PC->in[tempInput]->get_name(), "speed potion")==0)
+io.cpp~:1006:	d->PC->speed += d->PC->speed/2;
+io.cpp~:1023:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp~:1049:    if (!d->PC->eq[key - 'a']) {
+io.cpp~:1054:    if (!d->PC->remove_eq(key - 'a')) {
+io.cpp~:1059:             d->PC->eq[key - 'a']->get_name());
+io.cpp~:1073:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp~:1093:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp~:1118:    if (!d->PC->in[key - '0']) {
+io.cpp~:1123:    if (!d->PC->drop_in(d, key - '0')) {
+io.cpp~:1128:             d->PC->in[key - '0']->get_name());
+io.cpp~:1178:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp~:1180:             d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp~:1211:    if (!d->PC->in[key - '0']) {
+io.cpp~:1218:    io_display_obj_info(d->PC->in[key - '0']);
+io.cpp~:1240:  dest[dim_y] = d->PC->position[dim_y];
+io.cpp~:1241:  dest[dim_x] = d->PC->position[dim_x];
+io.cpp~:1295:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1299:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1308:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1318:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1322:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1331:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1341:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1345:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1354:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1364:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1368:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1377:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp~:1383:            (!charpair(dest) || charpair(dest) == d->PC)) ||
+io.cpp~:1425:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp~:1457:    if (!d->PC->eq[key - 'a']) {
+io.cpp~:1463:    io_display_obj_info(d->PC->eq[key - 'a']);
+io.cpp~:1482:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp~:1507:    if (!d->PC->in[key - '0']) {
+io.cpp~:1512:    if (!d->PC->destroy_in(key - '0')) {
+io.cpp~:1519:             d->PC->in[key - '0']->get_name());
+io.cpp~:1606:      d->quit = 1;
+io.cpp~:1757:	else if(d->PC->in[tempNum] == NULL){
+io.cpp~:1761:	  d->PC->gold += d->PC->in[tempNum]->get_value();
+io.cpp~:1762:	  d->vendor_items.push_back(d->PC->in[tempNum]);
+io.cpp~:1763:	  d->PC->in[tempNum] = NULL;
+io.cpp~:1788:	else if(tempNum < 0 || tempNum >= static_cast<int>(d->vendor_items.size())){
+io.cpp~:1792:	  else if(d->vendor_items[tempNum] == NULL){
+io.cpp~:1796:	else if (d->PC->gold > d->vendor_items[tempNum]->get_value()){
+io.cpp~:1799:	      if(d->PC->in[k] == NULL){
+io.cpp~:1800:		d->PC->in[k] = d->vendor_items[tempNum];
+io.cpp~:1801:		d->PC->gold -= d->vendor_items[tempNum]->get_value();
+io.cpp~:1802:		d->vendor_items[tempNum] = NULL;
+io.cpp~:1812:	else if (d->PC->gold < d->vendor_items[tempNum]->get_value()){
+io.cpp~:1832:      if(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]){
+io.cpp~:1833:	if(strcmp(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]->name, "Vendor") == 0)
+io.cpp~:1848:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp~:1852:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+io.cpp~:1860:  for(unsigned int i = 0; i < d->vendor_items.size(); i++){
+io.cpp~:1861:    mvprintw(i + 7, 2, "%d: %s", i, d->vendor_items[i]->get_name());
+io.cpp~:1862:    mvprintw(i + 7, 20, "     cost: %d", d->vendor_items[i]->get_value());
+npc.cpp:17:  for (i = sum = 0; i < d->num_rooms; i++) {
+npc.cpp:19:      sum += d->rooms[i].size[dim_y] * d->rooms[i].size[dim_x];
+npc.cpp:34:  if (d->max_monsters < (c = max_monster_cells(d))) {
+npc.cpp:35:    d->num_monsters = d->max_monsters;
+npc.cpp:37:    d->num_monsters = c;
+npc.cpp:40:  for (i = 0; i < d->num_monsters; i++) {
+npc.cpp:158:  dir[dim_y] = character_get_y(d->PC) - c->position[dim_y];
+npc.cpp:159:  dir[dim_x] = character_get_x(d->PC) - c->position[dim_x];
+npc.cpp:189:  dir[dim_y] = d->PC->position[dim_y] - c->position[dim_y];
+npc.cpp:190:  dir[dim_x] = d->PC->position[dim_x] - c->position[dim_x];
+npc.cpp:224:    min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x]] +
+npc.cpp:225:                (d->hardness[next[dim_y] - 1][next[dim_x]] / 85));
+npc.cpp:228:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x]    ] +
+npc.cpp:229:         (d->hardness[next[dim_y] + 1][next[dim_x]] / 85)) < min_cost) {
+npc.cpp:230:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x]] +
+npc.cpp:231:                  (d->hardness[next[dim_y] + 1][next[dim_x]] / 85));
+npc.cpp:235:    if ((d->pc_tunnel[next[dim_y]    ][next[dim_x] + 1] +
+npc.cpp:236:         (d->hardness[next[dim_y]    ][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp:237:      min_cost = (d->pc_tunnel[next[dim_y]][next[dim_x] + 1] +
+npc.cpp:238:                  (d->hardness[next[dim_y]][next[dim_x] + 1] / 85));
+npc.cpp:242:    if ((d->pc_tunnel[next[dim_y]    ][next[dim_x] - 1] +
+npc.cpp:243:         (d->hardness[next[dim_y]    ][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp:244:      min_cost = (d->pc_tunnel[next[dim_y]][next[dim_x] - 1] +
+npc.cpp:245:                  (d->hardness[next[dim_y]][next[dim_x] - 1] / 85));
+npc.cpp:249:    if ((d->pc_tunnel[next[dim_y] - 1][next[dim_x] + 1] +
+npc.cpp:250:         (d->hardness[next[dim_y] - 1][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp:251:      min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x] + 1] +
+npc.cpp:252:                  (d->hardness[next[dim_y] - 1][next[dim_x] + 1] / 85));
+npc.cpp:256:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x] + 1] +
+npc.cpp:257:         (d->hardness[next[dim_y] + 1][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp:258:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x] + 1] +
+npc.cpp:259:                  (d->hardness[next[dim_y] + 1][next[dim_x] + 1] / 85));
+npc.cpp:263:    if ((d->pc_tunnel[next[dim_y] - 1][next[dim_x] - 1] +
+npc.cpp:264:         (d->hardness[next[dim_y] - 1][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp:265:      min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x] - 1] +
+npc.cpp:266:                  (d->hardness[next[dim_y] - 1][next[dim_x] - 1] / 85));
+npc.cpp:270:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x] - 1] +
+npc.cpp:271:         (d->hardness[next[dim_y] + 1][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp:272:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x] - 1] +
+npc.cpp:273:                  (d->hardness[next[dim_y] + 1][next[dim_x] - 1] / 85));
+npc.cpp:294:    if (d->pc_distance[next[dim_y] - 1][next[dim_x]    ] <
+npc.cpp:295:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:299:    if (d->pc_distance[next[dim_y] + 1][next[dim_x]    ] <
+npc.cpp:300:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:304:    if (d->pc_distance[next[dim_y]    ][next[dim_x] + 1] <
+npc.cpp:305:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:309:    if (d->pc_distance[next[dim_y]    ][next[dim_x] - 1] <
+npc.cpp:310:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:314:    if (d->pc_distance[next[dim_y] - 1][next[dim_x] + 1] <
+npc.cpp:315:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:320:    if (d->pc_distance[next[dim_y] + 1][next[dim_x] + 1] <
+npc.cpp:321:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:326:    if (d->pc_distance[next[dim_y] - 1][next[dim_x] - 1] <
+npc.cpp:327:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:332:    if (d->pc_distance[next[dim_y] + 1][next[dim_x] - 1] <
+npc.cpp:333:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp:344:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:345:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:346:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:356:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:357:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:358:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:374:  c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:375:  c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:388:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:389:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:390:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:400:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:401:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:402:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:418:  c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp:419:  c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp:517:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:518:    c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:519:    c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:535:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:536:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:543:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:544:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:551:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp:552:    c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:553:    c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:568:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:569:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:576:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp:577:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp:710:  return d->num_monsters;
+npc.cpp:723:    room = rand_range(1, d->num_rooms - 1);
+npc.cpp:724:    p[dim_y] = rand_range(d->rooms[room].position[dim_y],
+npc.cpp:725:                          (d->rooms[room].position[dim_y] +
+npc.cpp:726:                           d->rooms[room].size[dim_y] - 1));
+npc.cpp:727:    p[dim_x] = rand_range(d->rooms[room].position[dim_x],
+npc.cpp:728:                          (d->rooms[room].position[dim_x] +
+npc.cpp:729:                           d->rooms[room].size[dim_x] - 1));
+npc.cpp:731:  } while (d->character_map[p[dim_y]][p[dim_x]]);
+npc.cpp:736:  d->character_map[p[dim_y]][p[dim_x]] = this;
+npc.cpp:741:  sequence_number = ++d->character_sequence_number;
+npc.cpp:746:    d->vendor = this;
+npc.cpp:747:    d->vendor_already_generated = 1;
+npc.cpp:771:  for (i = d->monster_descriptions.begin();
+npc.cpp:772:       i != d->monster_descriptions.end();
+heap.c:275:    p->child = p->child->next;
+move.cpp:91:    if (atk != d->PC) {
+move.cpp:100:        if (i == eq_slot_weapon && !d->PC->eq[i]) {
+move.cpp:102:        } else if (d->PC->eq[i]) {
+move.cpp:103:          damage += d->PC->eq[i]->roll_dice();
+move.cpp:106:      if(d->PC->attack_potion_turns > 0){
+move.cpp:108:	d->PC->attack_potion_turns--;
+move.cpp:115:      if (atk != d->PC) {
+move.cpp:132:      if (def != d->PC) {
+move.cpp:133:        d->num_monsters--;
+move.cpp:163:    if ((charpair(next) == d->PC) ||
+move.cpp:164:        c == d->PC) {
+move.cpp:202:      can_see_atk = can_see(d, character_get_pos(d->PC),
+move.cpp:204:      can_see_def = can_see(d, character_get_pos(d->PC),
+move.cpp:232:    d->character_map[c->position[dim_y]][c->position[dim_x]] = NULL;
+move.cpp:235:    d->character_map[c->position[dim_y]][c->position[dim_x]] = c;
+move.cpp:238:  if (c == d->PC) {
+move.cpp:261:    /* Hack: New dungeons are marked.  Unmark and ensure PC goes at d->time, *
+move.cpp:263:    if (d->is_new) {
+move.cpp:264:      d->is_new = 0;
+move.cpp:265:      e->time = d->time;
+move.cpp:267:      e->time = d->time + (1000 / d->PC->speed);
+move.cpp:270:    e->c = d->PC;
+move.cpp:271:    heap_insert(&d->events, e);
+move.cpp:275:         (e = (event *) heap_remove_min(&d->events)) &&
+move.cpp:276:         ((e->type != event_character_turn) || (e->c != d->PC))) {
+move.cpp:277:    d->time = e->time;
+move.cpp:282:      if (d->character_map[c->position[dim_y]][c->position[dim_x]] == c) {
+move.cpp:283:        d->character_map[c->position[dim_y]][c->position[dim_x]] = NULL;
+move.cpp:285:      if (c != d->PC) {
+move.cpp:295:      heap_insert(&d->events, update_event(d, e, 1000 / c->speed));
+move.cpp:299:  if (pc_is_alive(d) && e->c == d->PC) {
+move.cpp:301:    d->time = e->time;
+move.cpp:390:  next[dim_y] = d->PC->position[dim_y];
+move.cpp:391:  next[dim_x] = d->PC->position[dim_x];
+move.cpp:428:    if (mappair(d->PC->position) == ter_stairs_up) {
+move.cpp:434:    if (mappair(d->PC->position) == ter_stairs_down) {
+move.cpp:446:    move_character(d, d->PC, next);
+move.cpp:449:    d->PC->pick_up(d);
+Binary file move.o matches
+Binary file rlg327.o matches
+Binary file path.o matches
+Binary file rlg327 matches
+description_files/monster_desc.txt:48:of the Misty Mountains and bring peace to the halls of Khazad-dum.
+description_files/monster_desc.txt:254:saturated with soaked-up malevolence, and all of it is focused on you.
+description_files/object_desc.txt:57:and lavender chiffon.  It fits tight to mid-calf and you totally can't take
+description_files/monster_desc.txt~:48:of the Misty Mountains and bring peace to the halls of Khazad-dum.
+description_files/monster_desc.txt~:254:saturated with soaked-up malevolence, and all of it is focused on you.
+descriptions.cpp:202:  if (sscanf(lookahead->c_str(), "%d", integer) != 1) {
+descriptions.cpp:310:    if (lookahead->length() > 77) {
+descriptions.cpp:314:    lookahead->push_back('\n');
+descriptions.cpp:361:  if (sscanf(lookahead->c_str(), "%d+%ud%u", &base, &number, &sides) != 3) {
+descriptions.cpp:365:  d->set(base, number, sides);
+descriptions.cpp:898:  if (parse_monster_descriptions(f, d, &d->monster_descriptions)) {
+descriptions.cpp:912:  if (parse_object_descriptions(f, d, &d->object_descriptions)) {
+descriptions.cpp:923:  std::vector<monster_description> &m = d->monster_descriptions;
+descriptions.cpp:925:  std::vector<object_description> &o = d->object_descriptions;
+descriptions.cpp:1002:  d->monster_descriptions.clear();
+descriptions.cpp:1003:  d->object_descriptions.clear();
+descriptions.cpp:1072:  std::vector<monster_description> &v = d->monster_descriptions;
+descriptions.cpp:1082:  if(m.get_name() == "Vendor" && d->vendor_already_generated)
+descriptions.cpp:1087:    heap_insert(&d->events, new_event(d, event_character_turn, n, 0));
+dungeon.h:31:#define mappair(pair) (d->map[pair[dim_y]][pair[dim_x]])
+dungeon.h:32:#define mapxy(x, y) (d->map[y][x])
+dungeon.h:33:#define hardnesspair(pair) (d->hardness[pair[dim_y]][pair[dim_x]])
+dungeon.h:34:#define hardnessxy(x, y) (d->hardness[y][x])
+dungeon.h:35:#define charpair(pair) (d->character_map[pair[dim_y]][pair[dim_x]])
+dungeon.h:36:#define charxy(x, y) (d->character_map[y][x])
+dungeon.h:37:#define objpair(pair) (d->objmap[pair[dim_y]][pair[dim_x]])
+dungeon.h:38:#define objxy(x, y) (d->objmap[y][x])
+Binary file npc.o matches
+Binary file object.o matches
+dungeon.h~:31:#define mappair(pair) (d->map[pair[dim_y]][pair[dim_x]])
+dungeon.h~:32:#define mapxy(x, y) (d->map[y][x])
+dungeon.h~:33:#define hardnesspair(pair) (d->hardness[pair[dim_y]][pair[dim_x]])
+dungeon.h~:34:#define hardnessxy(x, y) (d->hardness[y][x])
+dungeon.h~:35:#define charpair(pair) (d->character_map[pair[dim_y]][pair[dim_x]])
+dungeon.h~:36:#define charxy(x, y) (d->character_map[y][x])
+dungeon.h~:37:#define objpair(pair) (d->objmap[pair[dim_y]][pair[dim_x]])
+dungeon.h~:38:#define objxy(x, y) (d->objmap[y][x])
+npc.cpp~:17:  for (i = sum = 0; i < d->num_rooms; i++) {
+npc.cpp~:19:      sum += d->rooms[i].size[dim_y] * d->rooms[i].size[dim_x];
+npc.cpp~:31:  if (d->max_monsters < (c = max_monster_cells(d))) {
+npc.cpp~:32:    d->num_monsters = d->max_monsters;
+npc.cpp~:34:    d->num_monsters = c;
+npc.cpp~:37:  for (i = 0; i < d->num_monsters; i++) {
+npc.cpp~:155:  dir[dim_y] = character_get_y(d->PC) - c->position[dim_y];
+npc.cpp~:156:  dir[dim_x] = character_get_x(d->PC) - c->position[dim_x];
+npc.cpp~:186:  dir[dim_y] = d->PC->position[dim_y] - c->position[dim_y];
+npc.cpp~:187:  dir[dim_x] = d->PC->position[dim_x] - c->position[dim_x];
+npc.cpp~:221:    min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x]] +
+npc.cpp~:222:                (d->hardness[next[dim_y] - 1][next[dim_x]] / 85));
+npc.cpp~:225:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x]    ] +
+npc.cpp~:226:         (d->hardness[next[dim_y] + 1][next[dim_x]] / 85)) < min_cost) {
+npc.cpp~:227:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x]] +
+npc.cpp~:228:                  (d->hardness[next[dim_y] + 1][next[dim_x]] / 85));
+npc.cpp~:232:    if ((d->pc_tunnel[next[dim_y]    ][next[dim_x] + 1] +
+npc.cpp~:233:         (d->hardness[next[dim_y]    ][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp~:234:      min_cost = (d->pc_tunnel[next[dim_y]][next[dim_x] + 1] +
+npc.cpp~:235:                  (d->hardness[next[dim_y]][next[dim_x] + 1] / 85));
+npc.cpp~:239:    if ((d->pc_tunnel[next[dim_y]    ][next[dim_x] - 1] +
+npc.cpp~:240:         (d->hardness[next[dim_y]    ][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp~:241:      min_cost = (d->pc_tunnel[next[dim_y]][next[dim_x] - 1] +
+npc.cpp~:242:                  (d->hardness[next[dim_y]][next[dim_x] - 1] / 85));
+npc.cpp~:246:    if ((d->pc_tunnel[next[dim_y] - 1][next[dim_x] + 1] +
+npc.cpp~:247:         (d->hardness[next[dim_y] - 1][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp~:248:      min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x] + 1] +
+npc.cpp~:249:                  (d->hardness[next[dim_y] - 1][next[dim_x] + 1] / 85));
+npc.cpp~:253:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x] + 1] +
+npc.cpp~:254:         (d->hardness[next[dim_y] + 1][next[dim_x] + 1] / 85)) < min_cost) {
+npc.cpp~:255:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x] + 1] +
+npc.cpp~:256:                  (d->hardness[next[dim_y] + 1][next[dim_x] + 1] / 85));
+npc.cpp~:260:    if ((d->pc_tunnel[next[dim_y] - 1][next[dim_x] - 1] +
+npc.cpp~:261:         (d->hardness[next[dim_y] - 1][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp~:262:      min_cost = (d->pc_tunnel[next[dim_y] - 1][next[dim_x] - 1] +
+npc.cpp~:263:                  (d->hardness[next[dim_y] - 1][next[dim_x] - 1] / 85));
+npc.cpp~:267:    if ((d->pc_tunnel[next[dim_y] + 1][next[dim_x] - 1] +
+npc.cpp~:268:         (d->hardness[next[dim_y] + 1][next[dim_x] - 1] / 85)) < min_cost) {
+npc.cpp~:269:      min_cost = (d->pc_tunnel[next[dim_y] + 1][next[dim_x] - 1] +
+npc.cpp~:270:                  (d->hardness[next[dim_y] + 1][next[dim_x] - 1] / 85));
+npc.cpp~:291:    if (d->pc_distance[next[dim_y] - 1][next[dim_x]    ] <
+npc.cpp~:292:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:296:    if (d->pc_distance[next[dim_y] + 1][next[dim_x]    ] <
+npc.cpp~:297:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:301:    if (d->pc_distance[next[dim_y]    ][next[dim_x] + 1] <
+npc.cpp~:302:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:306:    if (d->pc_distance[next[dim_y]    ][next[dim_x] - 1] <
+npc.cpp~:307:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:311:    if (d->pc_distance[next[dim_y] - 1][next[dim_x] + 1] <
+npc.cpp~:312:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:317:    if (d->pc_distance[next[dim_y] + 1][next[dim_x] + 1] <
+npc.cpp~:318:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:323:    if (d->pc_distance[next[dim_y] - 1][next[dim_x] - 1] <
+npc.cpp~:324:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:329:    if (d->pc_distance[next[dim_y] + 1][next[dim_x] - 1] <
+npc.cpp~:330:        d->pc_distance[next[dim_y]][next[dim_x]]) {
+npc.cpp~:341:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:342:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:343:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:353:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:354:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:355:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:371:  c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:372:  c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:385:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:386:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:387:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:397:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:398:    c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:399:    c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:415:  c->pc_last_known_position[dim_y] = d->PC->position[dim_y];
+npc.cpp~:416:  c->pc_last_known_position[dim_x] = d->PC->position[dim_x];
+npc.cpp~:514:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:515:    c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:516:    c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:532:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:533:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:540:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:541:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:548:  if (can_see(d, character_get_pos(c), character_get_pos(d->PC), 0, 0)) {
+npc.cpp~:549:    c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:550:    c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:565:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:566:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:573:  c->pc_last_known_position[dim_y] = character_get_y(d->PC);
+npc.cpp~:574:  c->pc_last_known_position[dim_x] = character_get_x(d->PC);
+npc.cpp~:707:  return d->num_monsters;
+npc.cpp~:720:    room = rand_range(1, d->num_rooms - 1);
+npc.cpp~:721:    p[dim_y] = rand_range(d->rooms[room].position[dim_y],
+npc.cpp~:722:                          (d->rooms[room].position[dim_y] +
+npc.cpp~:723:                           d->rooms[room].size[dim_y] - 1));
+npc.cpp~:724:    p[dim_x] = rand_range(d->rooms[room].position[dim_x],
+npc.cpp~:725:                          (d->rooms[room].position[dim_x] +
+npc.cpp~:726:                           d->rooms[room].size[dim_x] - 1));
+npc.cpp~:728:  } while (d->character_map[p[dim_y]][p[dim_x]]);
+npc.cpp~:733:  d->character_map[p[dim_y]][p[dim_x]] = this;
+npc.cpp~:738:  sequence_number = ++d->character_sequence_number;
+npc.cpp~:743:    d->vendor = this;
+npc.cpp~:767:  for (i = d->monster_descriptions.begin();
+npc.cpp~:768:       i != d->monster_descriptions.end();
+descriptions.cpp~:202:  if (sscanf(lookahead->c_str(), "%d", integer) != 1) {
+descriptions.cpp~:310:    if (lookahead->length() > 77) {
+descriptions.cpp~:314:    lookahead->push_back('\n');
+descriptions.cpp~:361:  if (sscanf(lookahead->c_str(), "%d+%ud%u", &base, &number, &sides) != 3) {
+descriptions.cpp~:365:  d->set(base, number, sides);
+descriptions.cpp~:898:  if (parse_monster_descriptions(f, d, &d->monster_descriptions)) {
+descriptions.cpp~:912:  if (parse_object_descriptions(f, d, &d->object_descriptions)) {
+descriptions.cpp~:923:  std::vector<monster_description> &m = d->monster_descriptions;
+descriptions.cpp~:925:  std::vector<object_description> &o = d->object_descriptions;
+descriptions.cpp~:1002:  d->monster_descriptions.clear();
+descriptions.cpp~:1003:  d->object_descriptions.clear();
+descriptions.cpp~:1072:  std::vector<monster_description> &v = d->monster_descriptions;
+descriptions.cpp~:1083:  heap_insert(&d->events, new_event(d, event_character_turn, n, 0));
+Binary file character.o matches
+event.cpp:32:  e->time = d->time + delay;
+event.cpp:44:  e->time = d->time + delay;
+io.cpp:51:    io_head = io_head->next;
+io.cpp:88:    mvprintw(y, x, "%-80s", io_head->msg);
+io.cpp:90:    io_head = io_head->next;
+io.cpp:109:      if (charxy(x, y) == d->PC) {
+io.cpp:114:        mvaddch(y + 1, x, '0' + (d->pc_tunnel[y][x] % 10));
+io.cpp:132:        mvaddch(y + 1, x, '0' + (d->pc_distance[y][x] % 10));
+io.cpp:154:      mvaddch(y + 1, x, (d->hardness[y][x]                             ?
+io.cpp:155:                         hardness_to_char[1 + (int) ((d->hardness[y][x] /
+io.cpp:185:      if ((d->PC->position[dim_y] + pos[dim_y] < 0) ||
+io.cpp:186:          (d->PC->position[dim_y] + pos[dim_y] >= DUNGEON_Y) ||
+io.cpp:187:          (d->PC->position[dim_x] + pos[dim_x] < 0) ||
+io.cpp:188:          (d->PC->position[dim_x] + pos[dim_x] >= DUNGEON_X)) {
+io.cpp:191:      if ((illuminated = is_illuminated(d->PC,
+io.cpp:192:                                        d->PC->position[dim_y] + pos[dim_y],
+io.cpp:193:                                        d->PC->position[dim_x] + pos[dim_x]))) {
+io.cpp:196:      if (cursor[dim_y] == d->PC->position[dim_y] + pos[dim_y] &&
+io.cpp:197:          cursor[dim_x] == d->PC->position[dim_x] + pos[dim_x]) {
+io.cpp:198:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:199:                d->PC->position[dim_x] + pos[dim_x], '*');
+io.cpp:200:      } else if (d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:201:                                 [d->PC->position[dim_x] + pos[dim_x]] &&
+io.cpp:202:                 can_see(d, d->PC->position,
+io.cpp:203:                         d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:204:                                         [d->PC->position[dim_x] +
+io.cpp:206:        attron(COLOR_PAIR((color = d->character_map[d->PC->position[dim_y] +
+io.cpp:208:                                                   [d->PC->position[dim_x] +
+io.cpp:210:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:211:                d->PC->position[dim_x] + pos[dim_x],
+io.cpp:212:                character_get_symbol(d->character_map[d->PC->position[dim_y] +
+io.cpp:214:                                                     [d->PC->position[dim_x] +
+io.cpp:217:      } else if (d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:218:                          [d->PC->position[dim_x] + pos[dim_x]] &&
+io.cpp:219:                 (can_see(d, d->PC->position,
+io.cpp:220:                          d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:221:                                   [d->PC->position[dim_x] +
+io.cpp:223:                 d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:224:                          [d->PC->position[dim_x] + pos[dim_x]]->have_seen())) {
+io.cpp:225:        attron(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:226:                                   [d->PC->position[dim_x] +
+io.cpp:228:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:229:                d->PC->position[dim_x] + pos[dim_x],
+io.cpp:230:                d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:231:                         [d->PC->position[dim_x] + pos[dim_x]]->get_symbol());
+io.cpp:232:        attroff(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+io.cpp:233:                                    [d->PC->position[dim_x] +
+io.cpp:236:        switch (pc_learned_terrain(d->PC,
+io.cpp:237:                                   d->PC->position[dim_y] + pos[dim_y],
+io.cpp:238:                                   d->PC->position[dim_x] +
+io.cpp:243:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:244:                  d->PC->position[dim_x] + pos[dim_x], ' ');
+io.cpp:248:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:249:                  d->PC->position[dim_x] + pos[dim_x], '.');
+io.cpp:252:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:253:                  d->PC->position[dim_x] + pos[dim_x], '#');
+io.cpp:256:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:257:                  d->PC->position[dim_x] + pos[dim_x], '*');
+io.cpp:260:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:261:                  d->PC->position[dim_x] + pos[dim_x], '<');
+io.cpp:264:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:265:                  d->PC->position[dim_x] + pos[dim_x], '>');
+io.cpp:270:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+io.cpp:271:                  d->PC->position[dim_x] + pos[dim_x], '0');
+io.cpp:297:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+io.cpp:302:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC) {
+io.cpp:303:        c[count++] = d->character_map[y][x];
+io.cpp:313:    if (can_see(d, character_get_pos(d->PC), character_get_pos(c[i]), 1, 0)) {
+io.cpp:337:      if ((illuminated = is_illuminated(d->PC,
+io.cpp:342:      if (d->character_map[pos[dim_y]]
+io.cpp:345:                  character_get_pos(d->PC),
+io.cpp:346:                  character_get_pos(d->character_map[pos[dim_y]]
+io.cpp:349:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+io.cpp:352:                character_get_symbol(d->character_map[pos[dim_y]]
+io.cpp:355:      } else if (d->objmap[pos[dim_y]]
+io.cpp:357:                 (d->objmap[pos[dim_y]]
+io.cpp:359:                  can_see(d, character_get_pos(d->PC), pos, 1, 0))) {
+io.cpp:360:        attron(COLOR_PAIR(d->objmap[pos[dim_y]]
+io.cpp:363:                d->objmap[pos[dim_y]]
+io.cpp:365:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]]
+io.cpp:368:        switch (pc_learned_terrain(d->PC,
+io.cpp:405:           d->PC->position[dim_x], d->PC->position[dim_y]);
+io.cpp:413:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+io.cpp:414:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+io.cpp:416:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+io.cpp:417:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+io.cpp:440:      if ((illuminated = is_illuminated(d->PC,
+io.cpp:447:      } else if (d->character_map[pos[dim_y]][pos[dim_x]]) {
+io.cpp:448:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+io.cpp:451:                character_get_symbol(d->character_map[pos[dim_y]][pos[dim_x]]));
+io.cpp:453:      } else if (d->objmap[pos[dim_y]][pos[dim_x]]) {
+io.cpp:454:        attron(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+io.cpp:456:                d->objmap[pos[dim_y]][pos[dim_x]]->get_symbol());
+io.cpp:457:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+io.cpp:475:      if (d->character_map[y][x]) {
+io.cpp:476:        attron(COLOR_PAIR((color = d->character_map[y][x]->get_color())));
+io.cpp:477:        mvaddch(y + 1, x, character_get_symbol(d->character_map[y][x]));
+io.cpp:479:      } else if (d->objmap[y][x]) {
+io.cpp:480:        attron(COLOR_PAIR(d->objmap[y][x]->get_color()));
+io.cpp:481:        mvaddch(y + 1, x, d->objmap[y][x]->get_symbol());
+io.cpp:482:        attroff(COLOR_PAIR(d->objmap[y][x]->get_color()));
+io.cpp:515:           d->PC->position[dim_x], d->PC->position[dim_y]);
+io.cpp:516:  mvprintw(22, 1, "%d %s.", d->num_monsters,
+io.cpp:517:           d->num_monsters > 1 ? "monsters" : "monster");
+io.cpp:523:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+io.cpp:524:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+io.cpp:526:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+io.cpp:527:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+io.cpp:557:  pc_reset_visibility(d->PC);
+io.cpp:563:  dest[dim_y] = d->PC->position[dim_y];
+io.cpp:564:  dest[dim_x] = d->PC->position[dim_x];
+io.cpp:688:  if (charpair(dest) && charpair(dest) != d->PC) {
+io.cpp:691:    d->character_map[d->PC->position[dim_y]][d->PC->position[dim_x]] = NULL;
+io.cpp:692:    d->character_map[dest[dim_y]][dest[dim_x]] = d->PC;
+io.cpp:694:    d->PC->position[dim_y] = dest[dim_y];
+io.cpp:695:    d->PC->position[dim_x] = dest[dim_x];
+io.cpp:698:  pc_observe_terrain(d->PC, d);
+io.cpp:813:             abs(character_get_y(c[i]) - character_get_y(d->PC)),
+io.cpp:814:             ((character_get_y(c[i]) - character_get_y(d->PC)) <= 0 ?
+io.cpp:816:             abs(character_get_x(c[i]) - character_get_x(d->PC)),
+io.cpp:817:             ((character_get_x(c[i]) - character_get_x(d->PC)) <= 0 ?
+io.cpp:847:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+io.cpp:852:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC &&
+io.cpp:853:          can_see(d, character_get_pos(d->PC),
+io.cpp:854:                  character_get_pos(d->character_map[y][x]), 1, 0)) {
+io.cpp:855:        c[count++] = d->character_map[y][x];
+io.cpp:874:  mvprintw(11, 33, " HP:    %5d ", d->PC->hp);
+io.cpp:875:  mvprintw(12, 33, " Speed: %5d ", d->PC->speed);
+io.cpp:904:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp:930:    if (!d->PC->in[key - '0']) {
+io.cpp:935:    if (!d->PC->wear_in(key - '0')) {
+io.cpp:940:             d->PC->in[key - '0']->get_name());
+io.cpp:954:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp:958:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+io.cpp:972:    else if(d->PC->in[tempInput] == NULL){
+io.cpp:976:    else if(d->PC->in[tempInput]->get_type() != 20){
+io.cpp:981:      if(strcmp(d->PC->in[tempInput]->get_name(), "weak Hp Potion") == 0){
+io.cpp:982:	if((d->PC->hp + 300) > 1000)
+io.cpp:983:	  d->PC->hp = 1000;
+io.cpp:985:	  d->PC->hp += 300;
+io.cpp:987:      else if(strcmp(d->PC->in[tempInput]->get_name(), "medium Hp Potion") == 0){
+io.cpp:988:	if((d->PC->hp + 500) > 1000)
+io.cpp:989:	  d->PC->hp = 1000;
+io.cpp:991:	  d->PC->hp += 500;
+io.cpp:993:      else if (strcmp(d->PC->in[tempInput]->get_name(), "greater Hp Potion") == 0){
+io.cpp:994:	if((d->PC->hp + 700) > 1000)
+io.cpp:995:	  d->PC->hp = 1000;
+io.cpp:997:	  d->PC->hp += 700;
+io.cpp:999:      else if(strcmp(d->PC->in[tempInput]->get_name(), "max Hp Potion") == 0)
+io.cpp:1000:	d->PC->hp = 1000;
+io.cpp:1002:      else if(strcmp(d->PC->in[tempInput]->get_name(), "attack potion") == 0)
+io.cpp:1003:	d->PC->attack_potion_turns = 3;
+io.cpp:1005:      else if(strcmp(d->PC->in[tempInput]->get_name(), "speed potion")==0)
+io.cpp:1006:	d->PC->speed += d->PC->speed/2;
+io.cpp:1007:      else if(strcmp(d->PC->in[tempInput]->get_name(), "flare")==0)
+io.cpp:1009:      else if(strcmp(d->PC->in[tempInput]->get_name(), "holy grenade")==0)
+io.cpp:1026:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp:1052:    if (!d->PC->eq[key - 'a']) {
+io.cpp:1057:    if (!d->PC->remove_eq(key - 'a')) {
+io.cpp:1062:             d->PC->eq[key - 'a']->get_name());
+io.cpp:1076:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp:1096:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp:1121:    if (!d->PC->in[key - '0']) {
+io.cpp:1126:    if (!d->PC->drop_in(d, key - '0')) {
+io.cpp:1131:             d->PC->in[key - '0']->get_name());
+io.cpp:1181:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp:1183:             d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp:1214:    if (!d->PC->in[key - '0']) {
+io.cpp:1221:    io_display_obj_info(d->PC->in[key - '0']);
+io.cpp:1243:  dest[dim_y] = d->PC->position[dim_y];
+io.cpp:1244:  dest[dim_x] = d->PC->position[dim_x];
+io.cpp:1298:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1302:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1311:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1321:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1325:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1334:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1344:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1348:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1357:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1367:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1371:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1380:          can_see(d, d->PC->position, tmp, 1, 0)) {
+io.cpp:1386:            (!charpair(dest) || charpair(dest) == d->PC)) ||
+io.cpp:1428:    io_object_to_string(d->PC->eq[i], t, 61);
+io.cpp:1460:    if (!d->PC->eq[key - 'a']) {
+io.cpp:1466:    io_display_obj_info(d->PC->eq[key - 'a']);
+io.cpp:1485:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+io.cpp:1510:    if (!d->PC->in[key - '0']) {
+io.cpp:1515:    if (!d->PC->destroy_in(key - '0')) {
+io.cpp:1522:             d->PC->in[key - '0']->get_name());
+io.cpp:1609:      d->quit = 1;
+io.cpp:1760:	else if(d->PC->in[tempNum] == NULL){
+io.cpp:1764:	  d->PC->gold += d->PC->in[tempNum]->get_value();
+io.cpp:1765:	  d->vendor_items.push_back(d->PC->in[tempNum]);
+io.cpp:1766:	  d->PC->in[tempNum] = NULL;
+io.cpp:1791:	else if(tempNum < 0 || tempNum >= static_cast<int>(d->vendor_items.size())){
+io.cpp:1795:	  else if(d->vendor_items[tempNum] == NULL){
+io.cpp:1799:	else if (d->PC->gold > d->vendor_items[tempNum]->get_value()){
+io.cpp:1802:	      if(d->PC->in[k] == NULL){
+io.cpp:1803:		d->PC->in[k] = d->vendor_items[tempNum];
+io.cpp:1804:		d->PC->gold -= d->vendor_items[tempNum]->get_value();
+io.cpp:1805:		d->vendor_items[tempNum] = NULL;
+io.cpp:1815:	else if (d->PC->gold < d->vendor_items[tempNum]->get_value()){
+io.cpp:1835:      if(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]){
+io.cpp:1836:	if(strcmp(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]->name, "Vendor") == 0)
+io.cpp:1851:    io_object_to_string(d->PC->in[i], s, 61);
+io.cpp:1855:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+io.cpp:1863:  for(unsigned int i = 0; i < d->vendor_items.size(); i++){
+io.cpp:1864:    mvprintw(i + 7, 2, "%d: %s", i, d->vendor_items[i]->get_name());
+io.cpp:1865:    mvprintw(i + 7, 20, "     cost: %d", d->vendor_items[i]->get_value());
+io.cpp:1875:      if(d->PC->position[dim_y] + i > 0 && d->PC->position[dim_y] + i < DUNGEON_Y && d->PC->position[dim_x] + j > 0 && d->PC->position[dim_x] + j < DUNGEON_X){
+io.cpp:1876:	if(d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]){
+io.cpp:1877:	  attron(COLOR_PAIR((color = d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]->get_color())));
+io.cpp:1878:	  mvaddch(d->PC->position[dim_y] + 1 + i, d->PC->position[dim_x] + j,
+io.cpp:1879:		  character_get_symbol(d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]));
+io.cpp:1882:	else if(d->objmap[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]){
+io.cpp:1883:	  attron(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]->get_color()));
+io.cpp:1884:	  mvaddch(d->PC->position[dim_y] + 1 + i, d->PC->position[dim_x] + j,
+io.cpp:1885:		  d->objmap[d->PC->position[dim_y] + i]
+io.cpp:1886:		  [d->PC->position[dim_x] + j]->get_symbol());
+io.cpp:1887:	  attroff(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + i]
+io.cpp:1888:			     [d->PC->position[dim_x] + j]->get_color()));
+io.cpp:1891:	  switch(d->map[d->PC->position[dim_y] + i][d->PC->position[dim_x] +j]){
+io.cpp:1895:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, ' ');
+io.cpp:1899:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '.');
+io.cpp:1902:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '#');
+io.cpp:1905:	  mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '*');
+io.cpp:1908:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '<');
+io.cpp:1911:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '>');
+io.cpp:1914:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '0');
+descriptions.h:154:  inline void destroy() { num_generated--; }
+Binary file event.o matches
+Binary file descriptions.o matches
+Binary file io.o matches
+move.cpp~:91:    if (atk != d->PC) {
+move.cpp~:100:        if (i == eq_slot_weapon && !d->PC->eq[i]) {
+move.cpp~:102:        } else if (d->PC->eq[i]) {
+move.cpp~:103:          damage += d->PC->eq[i]->roll_dice();
+move.cpp~:106:      if(d->PC->attack_potion_turns > 0){
+move.cpp~:108:	d->PC->attack_potion_turns--;
+move.cpp~:115:      if (atk != d->PC) {
+move.cpp~:132:      if (def != d->PC) {
+move.cpp~:133:        d->num_monsters--;
+move.cpp~:163:    if ((charpair(next) == d->PC) ||
+move.cpp~:164:        c == d->PC) {
+move.cpp~:202:      can_see_atk = can_see(d, character_get_pos(d->PC),
+move.cpp~:204:      can_see_def = can_see(d, character_get_pos(d->PC),
+move.cpp~:232:    d->character_map[c->position[dim_y]][c->position[dim_x]] = NULL;
+move.cpp~:235:    d->character_map[c->position[dim_y]][c->position[dim_x]] = c;
+move.cpp~:238:  if (c == d->PC) {
+move.cpp~:261:    /* Hack: New dungeons are marked.  Unmark and ensure PC goes at d->time, *
+move.cpp~:263:    if (d->is_new) {
+move.cpp~:264:      d->is_new = 0;
+move.cpp~:265:      e->time = d->time;
+move.cpp~:267:      e->time = d->time + (1000 / d->PC->speed);
+move.cpp~:270:    e->c = d->PC;
+move.cpp~:271:    heap_insert(&d->events, e);
+move.cpp~:275:         (e = (event *) heap_remove_min(&d->events)) &&
+move.cpp~:276:         ((e->type != event_character_turn) || (e->c != d->PC))) {
+move.cpp~:277:    d->time = e->time;
+move.cpp~:282:      if (d->character_map[c->position[dim_y]][c->position[dim_x]] == c) {
+move.cpp~:283:        d->character_map[c->position[dim_y]][c->position[dim_x]] = NULL;
+move.cpp~:285:      if (c != d->PC) {
+move.cpp~:295:      heap_insert(&d->events, update_event(d, e, 1000 / c->speed));
+move.cpp~:299:  if (pc_is_alive(d) && e->c == d->PC) {
+move.cpp~:301:    d->time = e->time;
+move.cpp~:390:  next[dim_y] = d->PC->position[dim_y];
+move.cpp~:391:  next[dim_x] = d->PC->position[dim_x];
+move.cpp~:426:    if (mappair(d->PC->position) == ter_stairs_up) {
+move.cpp~:432:    if (mappair(d->PC->position) == ter_stairs_down) {
+move.cpp~:444:    move_character(d, d->PC, next);
+move.cpp~:447:    d->PC->pick_up(d);
+Binary file dungeon.o matches
+Binary file pc.o matches
+character.cpp:141:        pc_learn_terrain(d->PC, first, mappair(first));
+character.cpp:142:        pc_see_object(d->PC, objpair(first));
+character.cpp:163:        pc_learn_terrain(d->PC, first, mappair(first));
+character.cpp:164:        pc_see_object(d->PC, objpair(first));
+pc.cpp:64:  return d->PC && d->PC->alive;
+pc.cpp:69:  d->PC->position[dim_y] = rand_range(d->rooms->position[dim_y],
+pc.cpp:70:                                     (d->rooms->position[dim_y] +
+pc.cpp:71:                                      d->rooms->size[dim_y] - 1));
+pc.cpp:72:  d->PC->position[dim_x] = rand_range(d->rooms->position[dim_x],
+pc.cpp:73:                                     (d->rooms->position[dim_x] +
+pc.cpp:74:                                      d->rooms->size[dim_x] - 1));
+pc.cpp:76:  pc_init_known_terrain(d->PC);
+pc.cpp:77:  pc_observe_terrain(d->PC, d);
+pc.cpp:86:  d->PC = new pc;
+pc.cpp:88:  d->PC->symbol = '@';
+pc.cpp:92:  d->PC->speed = PC_SPEED;
+pc.cpp:93:  d->PC->alive = 1;
+pc.cpp:94:  d->PC->sequence_number = 0;
+pc.cpp:95:  d->PC->kills[kill_direct] = d->PC->kills[kill_avenged] = 0;
+pc.cpp:96:  d->PC->color.push_back(COLOR_WHITE);
+pc.cpp:97:  d->PC->damage = &pc_dice;
+pc.cpp:98:  d->PC->name = "Isabella Garcia-Shapiro";
+pc.cpp:100:  d->character_map[character_get_y(d->PC)][character_get_x(d->PC)] = d->PC;
+pc.cpp:113:  if (in_corner(d, d->PC)) {
+pc.cpp:121:  if (charxy(d->PC->position[dim_x] - 1, d->PC->position[dim_y] - 1)) {
+pc.cpp:124:  } else if (charxy(d->PC->position[dim_x], d->PC->position[dim_y] - 1)) {
+pc.cpp:126:  } else if (charxy(d->PC->position[dim_x] + 1, d->PC->position[dim_y] - 1)) {
+pc.cpp:129:  } else if (charxy(d->PC->position[dim_x] - 1, d->PC->position[dim_y])) {
+pc.cpp:131:  } else if (charxy(d->PC->position[dim_x] + 1, d->PC->position[dim_y])) {
+pc.cpp:133:  } else if (charxy(d->PC->position[dim_x] - 1, d->PC->position[dim_y] + 1)) {
+pc.cpp:136:  } else if (charxy(d->PC->position[dim_x], d->PC->position[dim_y] + 1)) {
+pc.cpp:138:  } else if (charxy(d->PC->position[dim_x] + 1, d->PC->position[dim_y] + 1)) {
+pc.cpp:146:    if (!against_wall(d, d->PC) && ((rand() & 0x111) == 0x111)) {
+pc.cpp:150:      dir_nearest_wall(d, d->PC, dir);
+pc.cpp:154:    if (!against_wall(d, d->PC) && ((rand() & 0x111) == 0x111)) {
+pc.cpp:158:      dir[dim_x] = ((d->PC->position[dim_x] > DUNGEON_X / 2) ? -1 : 1);
+pc.cpp:159:      dir[dim_y] = ((d->PC->position[dim_y] > DUNGEON_Y / 2) ? -1 : 1);
+pc.cpp:164:  if (!charxy(d->PC->position[dim_x] + dir[dim_x],
+pc.cpp:165:              d->PC->position[dim_y] + dir[dim_y]) &&
+pc.cpp:166:      ((charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:167:               d->PC->position[dim_y] + dir[dim_y] - 1) &&
+pc.cpp:168:        (charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:169:                d->PC->position[dim_y] + dir[dim_y] - 1) != d->PC)) ||
+pc.cpp:170:       (charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:171:               d->PC->position[dim_y] + dir[dim_y]) &&
+pc.cpp:172:        (charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:173:                d->PC->position[dim_y] + dir[dim_y]) != d->PC)) ||
+pc.cpp:174:       (charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:175:               d->PC->position[dim_y] + dir[dim_y] + 1) &&
+pc.cpp:176:        (charxy(d->PC->position[dim_x] + dir[dim_x] - 1,
+pc.cpp:177:                d->PC->position[dim_y] + dir[dim_y] + 1) != d->PC)) ||
+pc.cpp:178:       (charxy(d->PC->position[dim_x] + dir[dim_x],
+pc.cpp:179:               d->PC->position[dim_y] + dir[dim_y] - 1) &&
+pc.cpp:180:        (charxy(d->PC->position[dim_x] + dir[dim_x],
+pc.cpp:181:                d->PC->position[dim_y] + dir[dim_y] - 1) != d->PC)) ||
+pc.cpp:182:       (charxy(d->PC->position[dim_x] + dir[dim_x],
+pc.cpp:183:               d->PC->position[dim_y] + dir[dim_y] + 1) &&
+pc.cpp:184:        (charxy(d->PC->position[dim_x] + dir[dim_x],
+pc.cpp:185:                d->PC->position[dim_y] + dir[dim_y] + 1) != d->PC)) ||
+pc.cpp:186:       (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:187:               d->PC->position[dim_y] + dir[dim_y] - 1) &&
+pc.cpp:188:        (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:189:                d->PC->position[dim_y] + dir[dim_y] - 1) != d->PC)) ||
+pc.cpp:190:       (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:191:               d->PC->position[dim_y] + dir[dim_y]) &&
+pc.cpp:192:        (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:193:                d->PC->position[dim_y] + dir[dim_y]) != d->PC)) ||
+pc.cpp:194:       (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:195:               d->PC->position[dim_y] + dir[dim_y] + 1) &&
+pc.cpp:196:        (charxy(d->PC->position[dim_x] + dir[dim_x] + 1,
+pc.cpp:197:                d->PC->position[dim_y] + dir[dim_y] + 1) != d->PC)))) {
+pc.cpp:206:  if ((room < d->num_rooms)                                     &&
+pc.cpp:207:      (d->PC->position[dim_x] >= d->rooms[room].position[dim_x]) &&
+pc.cpp:208:      (d->PC->position[dim_x] < (d->rooms[room].position[dim_x] +
+pc.cpp:209:                                d->rooms[room].size[dim_x]))    &&
+pc.cpp:210:      (d->PC->position[dim_y] >= d->rooms[room].position[dim_y]) &&
+pc.cpp:211:      (d->PC->position[dim_y] < (d->rooms[room].position[dim_y] +
+pc.cpp:212:                                d->rooms[room].size[dim_y]))) {
+pc.cpp:432:         d->objmap[position[dim_y]][position[dim_x]]) {
+pc.cpp:434:                     d->objmap[position[dim_y]][position[dim_x]]->get_name());
+pc.cpp:435:    d->objmap[position[dim_y]][position[dim_x]]->pick_up();
+pc.cpp:440:  for (o = d->objmap[position[dim_y]][position[dim_x]];
+pc.cpp:453:  if ((o = (object *) d->objmap[pos[dim_y]][pos[dim_x]])) {
+pc.cpp:454:    d->objmap[pos[dim_y]][pos[dim_x]] = o->get_next();
+#io.cpp#:51:    io_head = io_head->next;
+#io.cpp#:88:    mvprintw(y, x, "%-80s", io_head->msg);
+#io.cpp#:90:    io_head = io_head->next;
+#io.cpp#:109:      if (charxy(x, y) == d->PC) {
+#io.cpp#:114:        mvaddch(y + 1, x, '0' + (d->pc_tunnel[y][x] % 10));
+#io.cpp#:132:        mvaddch(y + 1, x, '0' + (d->pc_distance[y][x] % 10));
+#io.cpp#:154:      mvaddch(y + 1, x, (d->hardness[y][x]                             ?
+#io.cpp#:155:                         hardness_to_char[1 + (int) ((d->hardness[y][x] /
+#io.cpp#:185:      if ((d->PC->position[dim_y] + pos[dim_y] < 0) ||
+#io.cpp#:186:          (d->PC->position[dim_y] + pos[dim_y] >= DUNGEON_Y) ||
+#io.cpp#:187:          (d->PC->position[dim_x] + pos[dim_x] < 0) ||
+#io.cpp#:188:          (d->PC->position[dim_x] + pos[dim_x] >= DUNGEON_X)) {
+#io.cpp#:191:      if ((illuminated = is_illuminated(d->PC,
+#io.cpp#:192:                                        d->PC->position[dim_y] + pos[dim_y],
+#io.cpp#:193:                                        d->PC->position[dim_x] + pos[dim_x]))) {
+#io.cpp#:196:      if (cursor[dim_y] == d->PC->position[dim_y] + pos[dim_y] &&
+#io.cpp#:197:          cursor[dim_x] == d->PC->position[dim_x] + pos[dim_x]) {
+#io.cpp#:198:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:199:                d->PC->position[dim_x] + pos[dim_x], '*');
+#io.cpp#:200:      } else if (d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:201:                                 [d->PC->position[dim_x] + pos[dim_x]] &&
+#io.cpp#:202:                 can_see(d, d->PC->position,
+#io.cpp#:203:                         d->character_map[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:204:                                         [d->PC->position[dim_x] +
+#io.cpp#:206:        attron(COLOR_PAIR((color = d->character_map[d->PC->position[dim_y] +
+#io.cpp#:208:                                                   [d->PC->position[dim_x] +
+#io.cpp#:210:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:211:                d->PC->position[dim_x] + pos[dim_x],
+#io.cpp#:212:                character_get_symbol(d->character_map[d->PC->position[dim_y] +
+#io.cpp#:214:                                                     [d->PC->position[dim_x] +
+#io.cpp#:217:      } else if (d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:218:                          [d->PC->position[dim_x] + pos[dim_x]] &&
+#io.cpp#:219:                 (can_see(d, d->PC->position,
+#io.cpp#:220:                          d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:221:                                   [d->PC->position[dim_x] +
+#io.cpp#:223:                 d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:224:                          [d->PC->position[dim_x] + pos[dim_x]]->have_seen())) {
+#io.cpp#:225:        attron(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:226:                                   [d->PC->position[dim_x] +
+#io.cpp#:228:        mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:229:                d->PC->position[dim_x] + pos[dim_x],
+#io.cpp#:230:                d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:231:                         [d->PC->position[dim_x] + pos[dim_x]]->get_symbol());
+#io.cpp#:232:        attroff(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + pos[dim_y]]
+#io.cpp#:233:                                    [d->PC->position[dim_x] +
+#io.cpp#:236:        switch (pc_learned_terrain(d->PC,
+#io.cpp#:237:                                   d->PC->position[dim_y] + pos[dim_y],
+#io.cpp#:238:                                   d->PC->position[dim_x] +
+#io.cpp#:243:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:244:                  d->PC->position[dim_x] + pos[dim_x], ' ');
+#io.cpp#:248:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:249:                  d->PC->position[dim_x] + pos[dim_x], '.');
+#io.cpp#:252:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:253:                  d->PC->position[dim_x] + pos[dim_x], '#');
+#io.cpp#:256:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:257:                  d->PC->position[dim_x] + pos[dim_x], '*');
+#io.cpp#:260:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:261:                  d->PC->position[dim_x] + pos[dim_x], '<');
+#io.cpp#:264:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:265:                  d->PC->position[dim_x] + pos[dim_x], '>');
+#io.cpp#:270:          mvaddch(d->PC->position[dim_y] + pos[dim_y] + 1,
+#io.cpp#:271:                  d->PC->position[dim_x] + pos[dim_x], '0');
+#io.cpp#:297:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+#io.cpp#:302:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC) {
+#io.cpp#:303:        c[count++] = d->character_map[y][x];
+#io.cpp#:313:    if (can_see(d, character_get_pos(d->PC), character_get_pos(c[i]), 1, 0)) {
+#io.cpp#:337:      if ((illuminated = is_illuminated(d->PC,
+#io.cpp#:342:      if (d->character_map[pos[dim_y]]
+#io.cpp#:345:                  character_get_pos(d->PC),
+#io.cpp#:346:                  character_get_pos(d->character_map[pos[dim_y]]
+#io.cpp#:349:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+#io.cpp#:352:                character_get_symbol(d->character_map[pos[dim_y]]
+#io.cpp#:355:      } else if (d->objmap[pos[dim_y]]
+#io.cpp#:357:                 (d->objmap[pos[dim_y]]
+#io.cpp#:359:                  can_see(d, character_get_pos(d->PC), pos, 1, 0))) {
+#io.cpp#:360:        attron(COLOR_PAIR(d->objmap[pos[dim_y]]
+#io.cpp#:363:                d->objmap[pos[dim_y]]
+#io.cpp#:365:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]]
+#io.cpp#:368:        switch (pc_learned_terrain(d->PC,
+#io.cpp#:405:           d->PC->position[dim_x], d->PC->position[dim_y]);
+#io.cpp#:413:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+#io.cpp#:414:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+#io.cpp#:416:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+#io.cpp#:417:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+#io.cpp#:440:      if ((illuminated = is_illuminated(d->PC,
+#io.cpp#:447:      } else if (d->character_map[pos[dim_y]][pos[dim_x]]) {
+#io.cpp#:448:        attron(COLOR_PAIR((color = d->character_map[pos[dim_y]]
+#io.cpp#:451:                character_get_symbol(d->character_map[pos[dim_y]][pos[dim_x]]));
+#io.cpp#:453:      } else if (d->objmap[pos[dim_y]][pos[dim_x]]) {
+#io.cpp#:454:        attron(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+#io.cpp#:456:                d->objmap[pos[dim_y]][pos[dim_x]]->get_symbol());
+#io.cpp#:457:        attroff(COLOR_PAIR(d->objmap[pos[dim_y]][pos[dim_x]]->get_color()));
+#io.cpp#:475:      if (d->character_map[y][x]) {
+#io.cpp#:476:        attron(COLOR_PAIR((color = d->character_map[y][x]->get_color())));
+#io.cpp#:477:        mvaddch(y + 1, x, character_get_symbol(d->character_map[y][x]));
+#io.cpp#:479:      } else if (d->objmap[y][x]) {
+#io.cpp#:480:        attron(COLOR_PAIR(d->objmap[y][x]->get_color()));
+#io.cpp#:481:        mvaddch(y + 1, x, d->objmap[y][x]->get_symbol());
+#io.cpp#:482:        attroff(COLOR_PAIR(d->objmap[y][x]->get_color()));
+#io.cpp#:515:           d->PC->position[dim_x], d->PC->position[dim_y]);
+#io.cpp#:516:  mvprintw(22, 1, "%d %s.", d->num_monsters,
+#io.cpp#:517:           d->num_monsters > 1 ? "monsters" : "monster");
+#io.cpp#:523:             abs(c->position[dim_y] - d->PC->position[dim_y]),
+#io.cpp#:524:             ((c->position[dim_y] - d->PC->position[dim_y]) <= 0 ?
+#io.cpp#:526:             abs(c->position[dim_x] - d->PC->position[dim_x]),
+#io.cpp#:527:             ((c->position[dim_x] - d->PC->position[dim_x]) <= 0 ?
+#io.cpp#:557:  pc_reset_visibility(d->PC);
+#io.cpp#:563:  dest[dim_y] = d->PC->position[dim_y];
+#io.cpp#:564:  dest[dim_x] = d->PC->position[dim_x];
+#io.cpp#:688:  if (charpair(dest) && charpair(dest) != d->PC) {
+#io.cpp#:691:    d->character_map[d->PC->position[dim_y]][d->PC->position[dim_x]] = NULL;
+#io.cpp#:692:    d->character_map[dest[dim_y]][dest[dim_x]] = d->PC;
+#io.cpp#:694:    d->PC->position[dim_y] = dest[dim_y];
+#io.cpp#:695:    d->PC->position[dim_x] = dest[dim_x];
+#io.cpp#:698:  pc_observe_terrain(d->PC, d);
+#io.cpp#:813:             abs(character_get_y(c[i]) - character_get_y(d->PC)),
+#io.cpp#:814:             ((character_get_y(c[i]) - character_get_y(d->PC)) <= 0 ?
+#io.cpp#:816:             abs(character_get_x(c[i]) - character_get_x(d->PC)),
+#io.cpp#:817:             ((character_get_x(c[i]) - character_get_x(d->PC)) <= 0 ?
+#io.cpp#:847:  c = (character **) malloc(d->num_monsters * sizeof (*c));
+#io.cpp#:852:      if (d->character_map[y][x] && d->character_map[y][x] != d->PC &&
+#io.cpp#:853:          can_see(d, character_get_pos(d->PC),
+#io.cpp#:854:                  character_get_pos(d->character_map[y][x]), 1, 0)) {
+#io.cpp#:855:        c[count++] = d->character_map[y][x];
+#io.cpp#:874:  mvprintw(11, 33, " HP:    %5d ", d->PC->hp);
+#io.cpp#:875:  mvprintw(12, 33, " Speed: %5d ", d->PC->speed);
+#io.cpp#:904:    io_object_to_string(d->PC->in[i], s, 61);
+#io.cpp#:930:    if (!d->PC->in[key - '0']) {
+#io.cpp#:935:    if (!d->PC->wear_in(key - '0')) {
+#io.cpp#:940:             d->PC->in[key - '0']->get_name());
+#io.cpp#:954:    io_object_to_string(d->PC->in[i], s, 61);
+#io.cpp#:958:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+#io.cpp#:972:    else if(d->PC->in[tempInput] == NULL){
+#io.cpp#:976:    else if(d->PC->in[tempInput]->get_type() != 20){
+#io.cpp#:981:      if(strcmp(d->PC->in[tempInput]->get_name(), "weak Hp Potion") == 0){
+#io.cpp#:982:	if((d->PC->hp + 300) > 1000)
+#io.cpp#:983:	  d->PC->hp = 1000;
+#io.cpp#:985:	  d->PC->hp += 300;
+#io.cpp#:987:      else if(strcmp(d->PC->in[tempInput]->get_name(), "medium Hp Potion") == 0){
+#io.cpp#:988:	if((d->PC->hp + 500) > 1000)
+#io.cpp#:989:	  d->PC->hp = 1000;
+#io.cpp#:991:	  d->PC->hp += 500;
+#io.cpp#:993:      else if (strcmp(d->PC->in[tempInput]->get_name(), "greater Hp Potion") == 0){
+#io.cpp#:994:	if((d->PC->hp + 700) > 1000)
+#io.cpp#:995:	  d->PC->hp = 1000;
+#io.cpp#:997:	  d->PC->hp += 700;
+#io.cpp#:999:      else if(strcmp(d->PC->in[tempInput]->get_name(), "max Hp Potion") == 0)
+#io.cpp#:1000:	d->PC->hp = 1000;
+#io.cpp#:1002:      else if(strcmp(d->PC->in[tempInput]->get_name(), "attack potion") == 0)
+#io.cpp#:1003:	d->PC->attack_potion_turns = 3;
+#io.cpp#:1005:      else if(strcmp(d->PC->in[tempInput]->get_name(), "speed potion")==0)
+#io.cpp#:1006:	d->PC->speed += d->PC->speed/2;
+#io.cpp#:1007:      else if(strcmp(d->PC->in[tempInput]->get_name(), "flare")==0)
+#io.cpp#:1009:      else if(strcmp(d->PC->in[tempInput]->get_name(), "holy grenade")==0){
+#io.cpp#:1028:    io_object_to_string(d->PC->eq[i], t, 61);
+#io.cpp#:1054:    if (!d->PC->eq[key - 'a']) {
+#io.cpp#:1059:    if (!d->PC->remove_eq(key - 'a')) {
+#io.cpp#:1064:             d->PC->eq[key - 'a']->get_name());
+#io.cpp#:1078:    io_object_to_string(d->PC->eq[i], t, 61);
+#io.cpp#:1098:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+#io.cpp#:1123:    if (!d->PC->in[key - '0']) {
+#io.cpp#:1128:    if (!d->PC->drop_in(d, key - '0')) {
+#io.cpp#:1133:             d->PC->in[key - '0']->get_name());
+#io.cpp#:1183:    io_object_to_string(d->PC->in[i], s, 61);
+#io.cpp#:1185:             d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+#io.cpp#:1216:    if (!d->PC->in[key - '0']) {
+#io.cpp#:1223:    io_display_obj_info(d->PC->in[key - '0']);
+#io.cpp#:1245:  dest[dim_y] = d->PC->position[dim_y];
+#io.cpp#:1246:  dest[dim_x] = d->PC->position[dim_x];
+#io.cpp#:1300:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1304:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1313:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1323:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1327:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1336:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1346:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1350:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1359:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1369:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1373:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1382:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1388:            (!charpair(dest) || charpair(dest) == d->PC)) ||
+#io.cpp#:1430:    io_object_to_string(d->PC->eq[i], t, 61);
+#io.cpp#:1462:    if (!d->PC->eq[key - 'a']) {
+#io.cpp#:1468:    io_display_obj_info(d->PC->eq[key - 'a']);
+#io.cpp#:1487:               d->PC->in[i] ? d->PC->in[i]->get_name() : "");
+#io.cpp#:1512:    if (!d->PC->in[key - '0']) {
+#io.cpp#:1517:    if (!d->PC->destroy_in(key - '0')) {
+#io.cpp#:1524:             d->PC->in[key - '0']->get_name());
+#io.cpp#:1611:      d->quit = 1;
+#io.cpp#:1762:	else if(d->PC->in[tempNum] == NULL){
+#io.cpp#:1766:	  d->PC->gold += d->PC->in[tempNum]->get_value();
+#io.cpp#:1767:	  d->vendor_items.push_back(d->PC->in[tempNum]);
+#io.cpp#:1768:	  d->PC->in[tempNum] = NULL;
+#io.cpp#:1793:	else if(tempNum < 0 || tempNum >= static_cast<int>(d->vendor_items.size())){
+#io.cpp#:1797:	  else if(d->vendor_items[tempNum] == NULL){
+#io.cpp#:1801:	else if (d->PC->gold > d->vendor_items[tempNum]->get_value()){
+#io.cpp#:1804:	      if(d->PC->in[k] == NULL){
+#io.cpp#:1805:		d->PC->in[k] = d->vendor_items[tempNum];
+#io.cpp#:1806:		d->PC->gold -= d->vendor_items[tempNum]->get_value();
+#io.cpp#:1807:		d->vendor_items[tempNum] = NULL;
+#io.cpp#:1817:	else if (d->PC->gold < d->vendor_items[tempNum]->get_value()){
+#io.cpp#:1837:      if(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]){
+#io.cpp#:1838:	if(strcmp(d->character_map[d->PC->position[dim_y]+i][d->PC->position[dim_x]+j]->name, "Vendor") == 0)
+#io.cpp#:1853:    io_object_to_string(d->PC->in[i], s, 61);
+#io.cpp#:1857:  mvprintw(6, 10, "Gold: %d", d->PC->gold);
+#io.cpp#:1865:  for(unsigned int i = 0; i < d->vendor_items.size(); i++){
+#io.cpp#:1866:    mvprintw(i + 7, 2, "%d: %s", i, d->vendor_items[i]->get_name());
+#io.cpp#:1867:    mvprintw(i + 7, 20, "     cost: %d", d->vendor_items[i]->get_value());
+#io.cpp#:1877:      if(d->PC->position[dim_y] + i > 0 && d->PC->position[dim_y] + i < DUNGEON_Y && d->PC->position[dim_x] + j > 0 && d->PC->position[dim_x] + j < DUNGEON_X){
+#io.cpp#:1879:	d->PC->visible[
+#io.cpp#:1881:	if(d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]){
+#io.cpp#:1882:	  attron(COLOR_PAIR((color = d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]->get_color())));
+#io.cpp#:1883:	  mvaddch(d->PC->position[dim_y] + 1 + i, d->PC->position[dim_x] + j,
+#io.cpp#:1884:		  character_get_symbol(d->character_map[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]));
+#io.cpp#:1887:	else if(d->objmap[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]){
+#io.cpp#:1888:	  attron(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + i][d->PC->position[dim_x] + j]->get_color()));
+#io.cpp#:1889:	  mvaddch(d->PC->position[dim_y] + 1 + i, d->PC->position[dim_x] + j,
+#io.cpp#:1890:		  d->objmap[d->PC->position[dim_y] + i]
+#io.cpp#:1891:		  [d->PC->position[dim_x] + j]->get_symbol());
+#io.cpp#:1892:	  attroff(COLOR_PAIR(d->objmap[d->PC->position[dim_y] + i]
+#io.cpp#:1893:			     [d->PC->position[dim_x] + j]->get_color()));
+#io.cpp#:1896:	  switch(d->map[d->PC->position[dim_y] + i][d->PC->position[dim_x] +j]){
+#io.cpp#:1900:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, ' ');
+#io.cpp#:1904:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '.');
+#io.cpp#:1907:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '#');
+#io.cpp#:1910:	  mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '*');
+#io.cpp#:1913:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '<');
+#io.cpp#:1916:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '>');
+#io.cpp#:1919:	    mvaddch(d->PC->position[dim_y] + i + 1, d->PC->position[dim_x] + j, '0');
+#io.cpp#:1940:  dest[dim_y] = d->PC->position[dim_y];
+#io.cpp#:1941:  dest[dim_x] = d->PC->position[dim_x];
+#io.cpp#:1991:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:1995:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2004:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2014:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2018:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2027:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2037:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2041:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2050:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2060:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2064:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2073:          can_see(d, d->PC->position, tmp, 1, 0)) {
+#io.cpp#:2079:            (!charpair(dest) || charpair(dest) == d->PC)) ||
+path.cpp:57:      d->pc_distance[y][x] = 255;
+path.cpp:60:  d->pc_distance[d->PC->position[dim_y]][d->PC->position[dim_x]] = 0;
+path.cpp:75:        (d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x] - 1] >
+path.cpp:76:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:77:      d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x] - 1] =
+path.cpp:78:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:83:        (d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x]    ] >
+path.cpp:84:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:85:      d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x]    ] =
+path.cpp:86:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:91:        (d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x] + 1] >
+path.cpp:92:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:93:      d->pc_distance[c->pos[dim_y] - 1][c->pos[dim_x] + 1] =
+path.cpp:94:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:99:        (d->pc_distance[c->pos[dim_y]    ][c->pos[dim_x] - 1] >
+path.cpp:100:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:101:      d->pc_distance[c->pos[dim_y]    ][c->pos[dim_x] - 1] =
+path.cpp:102:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:107:        (d->pc_distance[c->pos[dim_y]    ][c->pos[dim_x] + 1] >
+path.cpp:108:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:109:      d->pc_distance[c->pos[dim_y]    ][c->pos[dim_x] + 1] =
+path.cpp:110:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:115:        (d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x] - 1] >
+path.cpp:116:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:117:      d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x] - 1] =
+path.cpp:118:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:123:        (d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x]    ] >
+path.cpp:124:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:125:      d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x]    ] =
+path.cpp:126:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:131:        (d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x] + 1] >
+path.cpp:132:         d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1)) {
+path.cpp:133:      d->pc_distance[c->pos[dim_y] + 1][c->pos[dim_x] + 1] =
+path.cpp:134:        d->pc_distance[c->pos[dim_y]][c->pos[dim_x]] + 1;
+path.cpp:145:  ((d->hardness[y][x] / 85) + 1)
+path.cpp:171:      d->pc_tunnel[y][x] = 255;
+path.cpp:174:  d->pc_tunnel[d->PC->position[dim_y]][d->PC->position[dim_x]] = 0;
+path.cpp:193:        (d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x] - 1] >
+path.cpp:194:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:196:      d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x] - 1] =
+path.cpp:197:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:203:        (d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x]    ] >
+path.cpp:204:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:206:      d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x]    ] =
+path.cpp:207:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:213:        (d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x] + 1] >
+path.cpp:214:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:216:      d->pc_tunnel[c->pos[dim_y] - 1][c->pos[dim_x] + 1] =
+path.cpp:217:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:223:        (d->pc_tunnel[c->pos[dim_y]    ][c->pos[dim_x] - 1] >
+path.cpp:224:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:226:      d->pc_tunnel[c->pos[dim_y]    ][c->pos[dim_x] - 1] =
+path.cpp:227:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:233:        (d->pc_tunnel[c->pos[dim_y]    ][c->pos[dim_x] + 1] >
+path.cpp:234:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:236:      d->pc_tunnel[c->pos[dim_y]    ][c->pos[dim_x] + 1] =
+path.cpp:237:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:243:        (d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x] - 1] >
+path.cpp:244:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:246:      d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x] - 1] =
+path.cpp:247:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:253:        (d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x]    ] >
+path.cpp:254:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:256:      d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x]    ] =
+path.cpp:257:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:263:        (d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x] + 1] >
+path.cpp:264:         d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+path.cpp:266:      d->pc_tunnel[c->pos[dim_y] + 1][c->pos[dim_x] + 1] =
+path.cpp:267:        (d->pc_tunnel[c->pos[dim_y]][c->pos[dim_x]] +
+dungeon.cpp:140:/* This is a cut-and-paste of the above.  The code is modified to  *
+dungeon.cpp:273:  for (i = max = 0; i < d->num_rooms - 1; i++) {
+dungeon.cpp:274:    for (j = i + 1; j < d->num_rooms; j++) {
+dungeon.cpp:275:      tmp = (((d->rooms[i].position[dim_x] - d->rooms[j].position[dim_x])  *
+dungeon.cpp:276:              (d->rooms[i].position[dim_x] - d->rooms[j].position[dim_x])) +
+dungeon.cpp:277:             ((d->rooms[i].position[dim_y] - d->rooms[j].position[dim_y])  *
+dungeon.cpp:278:              (d->rooms[i].position[dim_y] - d->rooms[j].position[dim_y])));
+dungeon.cpp:289:  e1[dim_y] = rand_range(d->rooms[p].position[dim_y],
+dungeon.cpp:290:                         (d->rooms[p].position[dim_y] +
+dungeon.cpp:291:                          d->rooms[p].size[dim_y] - 1));
+dungeon.cpp:292:  e1[dim_x] = rand_range(d->rooms[p].position[dim_x],
+dungeon.cpp:293:                         (d->rooms[p].position[dim_x] +
+dungeon.cpp:294:                          d->rooms[p].size[dim_x] - 1));
+dungeon.cpp:295:  e2[dim_y] = rand_range(d->rooms[q].position[dim_y],
+dungeon.cpp:296:                         (d->rooms[q].position[dim_y] +
+dungeon.cpp:297:                          d->rooms[q].size[dim_y] - 1));
+dungeon.cpp:298:  e2[dim_x] = rand_range(d->rooms[q].position[dim_x],
+dungeon.cpp:299:                         (d->rooms[q].position[dim_x] +
+dungeon.cpp:300:                          d->rooms[q].size[dim_x] - 1));
+dungeon.cpp:311:  for (i = 1; i < d->num_rooms; i++) {
+dungeon.cpp:312:    connect_two_rooms(d, d->rooms + i - 1, d->rooms + i);
+dungeon.cpp:372:    x = head->x;
+dungeon.cpp:373:    y = head->y;
+dungeon.cpp:442:    head = head->next;
+dungeon.cpp:458:      d->hardness[y][x] = t / s;
+dungeon.cpp:473:      d->hardness[y][x] = t / s;
+dungeon.cpp:485:  fwrite(&d->hardness, sizeof (d->hardness), 1, out);
+dungeon.cpp:509:  d->is_new = 1;
+dungeon.cpp:523:    for (i = 0; success && i < d->num_rooms; i++) {
+dungeon.cpp:524:      r = d->rooms + i;
+dungeon.cpp:579:  d->num_rooms = i;
+dungeon.cpp:580:  d->rooms = (room_t *) malloc(sizeof (*d->rooms) * d->num_rooms);
+dungeon.cpp:582:  for (i = 0; i < d->num_rooms; i++) {
+dungeon.cpp:583:    d->rooms[i].size[dim_x] = ROOM_MIN_X;
+dungeon.cpp:584:    d->rooms[i].size[dim_y] = ROOM_MIN_Y;
+dungeon.cpp:585:    while (rand_under(3, 4) && d->rooms[i].size[dim_x] < ROOM_MAX_X) {
+dungeon.cpp:586:      d->rooms[i].size[dim_x]++;
+dungeon.cpp:588:    while (rand_under(3, 4) && d->rooms[i].size[dim_y] < ROOM_MAX_Y) {
+dungeon.cpp:589:      d->rooms[i].size[dim_y]++;
+dungeon.cpp:611:  free(d->rooms);
+dungeon.cpp:612:  heap_delete(&d->events);
+dungeon.cpp:613:  memset(d->character_map, 0, sizeof (d->character_map));
+dungeon.cpp:620:  memset(&d->events, 0, sizeof (d->events));
+dungeon.cpp:621:  heap_init(&d->events, compare_events, event_delete);
+dungeon.cpp:622:  memset(d->character_map, 0, sizeof (d->character_map));
+dungeon.cpp:623:  memset(d->objmap, 0, sizeof (d->objmap));
+dungeon.cpp:632:      fwrite(&d->hardness[y][x], sizeof (unsigned char), 1, f);
+dungeon.cpp:644:  for (i = 0; i < d->num_rooms; i++) {
+dungeon.cpp:646:    p = d->rooms[i].position[dim_x];
+dungeon.cpp:648:    p = d->rooms[i].position[dim_y];
+dungeon.cpp:650:    p = d->rooms[i].size[dim_x];
+dungeon.cpp:652:    p = d->rooms[i].size[dim_y];
+dungeon.cpp:663:          (d->num_rooms * 4) /* Four bytes per room         */ );
+dungeon.cpp:716:  i = d->PC->position[dim_x];
+dungeon.cpp:718:  i = d->PC->position[dim_y];
+dungeon.cpp:738:      fread(&d->hardness[y][x], sizeof (d->hardness[y][x]), 1, f);
+dungeon.cpp:739:      if (d->hardness[y][x] == 0) {
+dungeon.cpp:742:        d->map[y][x] = ter_floor_hall;
+dungeon.cpp:743:      } else if (d->hardness[y][x] == 255) {
+dungeon.cpp:744:        d->map[y][x] = ter_wall_immutable;
+dungeon.cpp:746:        d->map[y][x] = ter_wall;
+dungeon.cpp:761:  for (i = 0; i < d->num_rooms; i++) {
+dungeon.cpp:763:    d->rooms[i].position[dim_x] = p;
+dungeon.cpp:765:    d->rooms[i].position[dim_y] = p;
+dungeon.cpp:767:    d->rooms[i].size[dim_x] = p;
+dungeon.cpp:769:    d->rooms[i].size[dim_y] = p;
+dungeon.cpp:771:    if (d->rooms[i].size[dim_x] < 1             ||
+dungeon.cpp:772:        d->rooms[i].size[dim_y] < 1             ||
+dungeon.cpp:773:        d->rooms[i].size[dim_x] > DUNGEON_X - 1 ||
+dungeon.cpp:774:        d->rooms[i].size[dim_y] > DUNGEON_X - 1) {
+dungeon.cpp:780:    if (d->rooms[i].position[dim_x] < 1                                       ||
+dungeon.cpp:781:        d->rooms[i].position[dim_y] < 1                                       ||
+dungeon.cpp:782:        d->rooms[i].position[dim_x] > DUNGEON_X - 1                           ||
+dungeon.cpp:783:        d->rooms[i].position[dim_y] > DUNGEON_Y - 1                           ||
+dungeon.cpp:784:        d->rooms[i].position[dim_x] + d->rooms[i].size[dim_x] > DUNGEON_X - 1 ||
+dungeon.cpp:785:        d->rooms[i].position[dim_x] + d->rooms[i].size[dim_x] < 0             ||
+dungeon.cpp:786:        d->rooms[i].position[dim_y] + d->rooms[i].size[dim_y] > DUNGEON_Y - 1 ||
+dungeon.cpp:787:        d->rooms[i].position[dim_y] + d->rooms[i].size[dim_y] < 0)             {
+dungeon.cpp:795:    for (y = d->rooms[i].position[dim_y];
+dungeon.cpp:796:         y < d->rooms[i].position[dim_y] + d->rooms[i].size[dim_y];
+dungeon.cpp:798:      for (x = d->rooms[i].position[dim_x];
+dungeon.cpp:799:           x < d->rooms[i].position[dim_x] + d->rooms[i].size[dim_x];
+dungeon.cpp:864:  d->num_rooms = 0;
+dungeon.cpp:885:  d->PC->position[dim_x] = i;
+dungeon.cpp:887:  d->PC->position[dim_y] = i;
+dungeon.cpp:890:  d->num_rooms = calculate_num_rooms(buf.st_size);
+dungeon.cpp:891:  d->rooms = (room_t *) malloc(sizeof (*d->rooms) * d->num_rooms);
+dungeon.cpp:939:  for (d->num_rooms = 0, y = 0; y < DUNGEON_Y - 2; y++) {
+dungeon.cpp:942:        d->num_rooms++;
+dungeon.cpp:946:  d->rooms = (room_t *) malloc(sizeof (*d->rooms) * d->num_rooms);
+dungeon.cpp:951:        d->rooms[i].position[dim_x] = x + 1;
+dungeon.cpp:952:        d->rooms[i].position[dim_y] = y + 1;
+dungeon.cpp:953:        d->rooms[i].size[dim_x] = 1;
+dungeon.cpp:954:        d->rooms[i].size[dim_y] = 1;
+dungeon.cpp:956:        d->map[y + 1][x + 1] = ter_floor_room;
+dungeon.cpp:957:        d->hardness[y + 1][x + 1] = 0;
+dungeon.cpp:959:        d->map[y + 1][x + 1] = ter_floor_hall;
+dungeon.cpp:960:        d->hardness[y + 1][x + 1] = 0;
+dungeon.cpp:962:        d->map[y + 1][x + 1] = ter_wall;
+dungeon.cpp:963:        d->hardness[y + 1][x + 1] = gm[y][x];
+dungeon.cpp:969:    d->map[0][x] = ter_wall_immutable;
+dungeon.cpp:970:    d->hardness[0][x] = 255;
+dungeon.cpp:971:    d->map[DUNGEON_Y - 1][x] = ter_wall_immutable;
+dungeon.cpp:972:    d->hardness[DUNGEON_Y - 1][x] = 255;
+dungeon.cpp:975:    d->map[y][0] = ter_wall_immutable;
+dungeon.cpp:976:    d->hardness[y][0] = 255;
+dungeon.cpp:977:    d->map[y][DUNGEON_X - 1] = ter_wall_immutable;
+dungeon.cpp:978:    d->hardness[y][DUNGEON_X - 1] = 255;
+dungeon.cpp:1014:      if (p[dim_x] ==  d->PC->position[dim_x] &&
+dungeon.cpp:1015:          p[dim_y] ==  d->PC->position[dim_y]) {
+dungeon.cpp:1033:  sequence_number = d->character_sequence_number;
+dungeon.cpp:1039:  d->character_sequence_number = sequence_number;
+dungeon.cpp:1042:  d->character_map[d->PC->position[dim_y]][d->PC->position[dim_x]] = d->PC;

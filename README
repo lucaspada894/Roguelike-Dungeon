@@ -1,0 +1,5 @@
+For this assignment, I've added several consumables, which are loaded from the provided object_description file in the description_files directory. I've added hp potions, attack potions, speed potions, flare that illuminate a large section of the dungeon surrounding the PC, and the 'holy dynamite.' The holy dynamite can only be used when a flare is also present in the inventory. When used, the player will enter into Artillery mode. The dynamite is able to kill most monsters in a given area. I've also added a cool animation for the holy dynamite, a most secret of Vatican tools.
+
+ I have also added a non-agressive vendor npc which can sell all of the consumables previously mentioned. The vendor will always load with an inventory of the consumables specified in the object_description file. The consumables, represented by a '?' symbol, can also spawn on the dungeon floors much like other objects. Each object now has a gold value, and the PC can sell or buy consumables to/from the vendor. The player can also view his/her stats by pressing shift + s, or 'S'.
+
+PLEASE USE THE FILES PROVIDED IN THE description_files/ folder. 
